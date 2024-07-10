@@ -8,6 +8,8 @@ on:
 jobs:
   create-deplopment-artifacts:
     name: Create deplopment artifacts
+    
     runs-on: ubuntu-latest
+    
     steps:
-      - users: actions/checkout@v2
+      - uses: actions/checkout@v4
