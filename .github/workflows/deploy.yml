@@ -1,0 +1,13 @@
+name: deploy
+
+on: 
+  push:
+    branch:
+      - main
+
+jobs:
+  create-deplopment-artifacts:
+    name: Create deplopment artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - users: actions/checkout@v2
