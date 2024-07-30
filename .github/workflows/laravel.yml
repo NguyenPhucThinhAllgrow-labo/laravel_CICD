@@ -38,14 +38,11 @@ jobs:
       run: php artisan test
 
     - name: Deploy via SSH
-      uses: appleboy/ssh-action@v0.1.4
+      uses: appleboy/ssh-action@v0.1.9
       with:
         host: ${{ secrets.AWS_HOST }}
         username: ${{ secrets.AWS_USERNAME }}
         key: ${{ secrets.AWS_SSH_KEY }}
         script: |
-          cd /var/www/api/laravel_CICD
-          git pull origin dev
-          composer install
-          php artisan migrate
+          
           php artisan config:cache
