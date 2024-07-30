@@ -19,3 +19,6 @@ use App\Http\Controllers\UserController;
 // });
 
 Route::get('/user-list', [UserController::class, 'getUserList']);
+Route::get('/hello1', function (User $users) {
+    echo '1';
+});
