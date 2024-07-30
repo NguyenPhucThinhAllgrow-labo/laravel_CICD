@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:
   laravel-tests:
@@ -36,3 +36,15 @@ jobs:
         DB_DATABASE: test
         DB_USERNAME: root
       run: php artisan test
+
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        username: ${{ secrets.AWS_USERNAME }}
+        key: ${{ secrets.AWS_SSH_KEY }}
+        script: |
+          cd /var/www/api/laravel_CICD
+          git pull origin dev
+          composer install
+          php artisan migrate
+          php artisan config:cache
