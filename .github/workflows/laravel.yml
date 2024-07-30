@@ -44,5 +44,8 @@ jobs:
         username: ${{ secrets.AWS_USERNAME }}
         key: ${{ secrets.AWS_SSH_KEY }}
         script: |
-          
+          cd /var/www/api/laravel_CICD
+          git pull origin dev
+          composer install
+          php artisan migrate
           php artisan config:cache
